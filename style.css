@@ -10,3 +10,12 @@ html{
     text-decoration: line-through;
     color: lightgray;
 }
+
+.tasks__doneButton{
+    background: yellow;
+    transition: background 5s ease;
+}
+
+.tasks__doneButton--done{
+    background: rgb(41, 187, 0);
+}

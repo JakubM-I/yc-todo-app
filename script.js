@@ -1,6 +1,7 @@
 const tasksList = [
     {
         taskName: "Zadanie1",
+        taskPriority: "",
         taskDone: true,
     },
 ];
@@ -9,7 +10,11 @@ const render = () =>{
     let listHTML = "";
 
     for (const task of tasksList) {
-        listHTML +=`<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""}"><button class="js-tasks__doneButton">Zrobione</button><span class="tasks__taskContent">${task.taskName}</span><button class="js-tasks__removeButton">Usuń</button></li>`;   
+        listHTML +=`<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""}">
+        <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}">Zrobione</button>
+        <span class="tasks__taskContent">${task.taskName}</span>
+        <span class="tasks__taskPriority">${task.taskPriority}</span>
+        <button class="js-tasks__removeButton">Usuń</button></li>`;   
     }
 
     document.querySelector(".js-tasksList").innerHTML = listHTML;
@@ -22,6 +27,7 @@ const taskListUpdate = () => {
 
     doneButton.forEach((button, index) => {
         button.addEventListener("click", () =>{
+            button.classList.toggle("tasks__doneButton--done");
             doneTask(index);
         });
     });
@@ -36,11 +42,15 @@ const taskListUpdate = () => {
 
 };
 
-
 const taskAdd = (newTask) => {
+
+    const prioritySelect = document.querySelector(".js-newTaskPriority");
+    const newTaskPriority = prioritySelect.value === "brak" ? "" : prioritySelect.value;
+    
     tasksList.push(
         {
             taskName: newTask,
+            taskPriority: newTaskPriority,
         }
     );
     render();
@@ -51,7 +61,7 @@ const formFieldErase = (newTaskField) => {
 };
 
 const doneTask = (index) => {
-    tasksList[index].taskDone = true;
+    tasksList[index].taskDone = !tasksList[index].taskDone;
     render();
 };
 
