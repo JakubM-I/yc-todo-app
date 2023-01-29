@@ -1,8 +1,8 @@
 const tasksList = [
     {
         taskName: "Zadanie1",
-        taskPriority: "",
-        taskDone: true,
+        taskPriority: 0,
+        taskDone: "",
     },
 ];
 
@@ -19,7 +19,7 @@ const render = () =>{
 
     document.querySelector(".js-tasksList").innerHTML = listHTML;
 
-    taskListUpdate();
+    taskListUpdate();   
 };
 
 const taskListUpdate = () => {
@@ -42,22 +42,44 @@ const taskListUpdate = () => {
 
 };
 
-const taskAdd = (newTask) => {
+const itemSorting = (a, b) => {
+    return b.taskPriority - a.taskPriority 
+};
 
-    const prioritySelect = document.querySelector(".js-newTaskPriority");
-    const newTaskPriority = prioritySelect.value === "brak" ? "" : prioritySelect.value;
-    
+const listSort = () => {
+    tasksList.sort(itemSorting)
+    render();
+}
+console.log(tasksList.sort(listSort));
+
+const taskAdd = (newTask, prioritySelect) => {
+
+    // const newTaskPriority = prioritySelect.value === "brak" ? "" : prioritySelect.value;
+    const priorityLevel = prioritySelect.value;
+
+    const newTaskPriority = () => {
+        switch (priorityLevel) {
+            case "brak":
+                return 0;
+            case "sredni":
+                return 1;
+            case "wysoki":
+                return 2;
+        }
+    }
+
     tasksList.push(
         {
             taskName: newTask,
-            taskPriority: newTaskPriority,
+            taskPriority: newTaskPriority(),
         }
     );
     render();
 };
 
-const formFieldErase = (newTaskField) => {
+const formFieldErase = (newTaskField, prioritySelect) => {
     newTaskField.value = "";
+    prioritySelect.value = "brak";
 };
 
 const doneTask = (index) => {
@@ -70,12 +92,12 @@ const removeTask = (index) => {
     render();
 };
 
-
 const init = () => {
     render();
 
     const addForm = document.querySelector(".js-taskListForm");
     const newTaskField = document.querySelector(".js-addNewTask");
+    const prioritySelect = document.querySelector(".js-newTaskPriority");
 
     addForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -85,8 +107,9 @@ const init = () => {
             return
         };
 
-        taskAdd(newTask);
-        formFieldErase(newTaskField);
+        taskAdd(newTask, prioritySelect);
+        listSort();
+        formFieldErase(newTaskField, prioritySelect);
     });
 
 };
