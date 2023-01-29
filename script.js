@@ -13,9 +13,21 @@ const render = () =>{
         listHTML +=`<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""}">
         <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}">Zrobione</button>
         <span class="tasks__taskContent">${task.taskName}</span>
-        <span class="tasks__taskPriority">${task.taskPriority}</span>
+        <span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__listItem--nopriority" : task.taskPriority === 1 ? "tasks__listItem--averange" : "tasks__listItem--important" }"></span>
         <button class="js-tasks__removeButton">Usuń</button></li>`;   
     }
+
+{/* <span class="tasks__taskPriority tasks__listItem--averange">${task.taskPriority}</span> */}
+
+    // ${switch (${task.taskPriority}){
+    //     case "0":
+    //         return "tasks__listItem--nopriority";
+    //     case "1":
+    //         return "tasks__listItem--averange";
+    //     case "2":
+    //         return "tasks__listItem--important";
+    // }}
+
 
     document.querySelector(".js-tasksList").innerHTML = listHTML;
 

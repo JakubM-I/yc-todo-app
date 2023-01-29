@@ -6,6 +6,12 @@ html{
     box-sizing: inherit;
 }
 
+.tasks__listItem{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
 .tasks__listItem--done{
     text-decoration: line-through;
     color: lightgray;
@@ -18,4 +24,31 @@ html{
 
 .tasks__doneButton--done{
     background: rgb(41, 187, 0);
+}
+
+.tasks__listItem--important{
+    display: block;
+    height: 25px;
+    width: 25px;
+    background-image: url(/graphics/wykrzyknik-podwojny.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.tasks__listItem--averange{
+    display: block;
+    height: 25px;
+    width: 25px;
+    background-image: url(/graphics/wykrzyknik.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.tasks__listItem--nopriority{
+    display: block;
+    height: 25px;
+    width: 25px;
+    background: #fff;
+    background-position: center;
+    background-size: cover;
 }
