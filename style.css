@@ -1,15 +1,72 @@
 html{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 *, ::after, ::before{
     box-sizing: inherit;
 }
 
+:root{
+    --icon-width: 35px;
+    --icon-height: 35px;
+}
+
+.taskList{
+    background: rgb(230, 230, 228);
+    width: min(1000px, calc(100% - 20px));
+    margin-inline: auto;
+    padding: 15px;
+}
+
+.taskList__header{
+    /* text-align: center; */
+    /* background: #fff; */
+    /* padding: 10px 0; */
+    /* border: 1px solid rgb(180, 178, 178); */
+
+}
+
+.taskListForm__header{
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 0;
+    border: 1px solid rgb(180, 178, 178);
+    border-bottom: none;
+}
+
+.taskListForm__form{
+    background: #fff;
+    padding: 15px;
+    border: 1px solid rgb(180, 178, 178);
+    margin-bottom: 15px;
+}
+
+.tasks{
+    background: #fff;
+    border: 1px solid rgb(180, 178, 178);
+
+}
+
+.tasks__header{
+    margin: 0;
+    padding: 15px;
+}
+
+.tasks__list{
+    border-top: 1px solid rgb(180, 178, 178);
+    padding: 20px 15px 0px;
+    margin-top: 0;
+}
+
 .tasks__listItem{
     display: flex;
-    width: 300px;
+    width: 100%;
     justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 5px;
+    border-bottom: 1px rgb(146, 142, 142);
 }
 
 .tasks__listItem--done{
@@ -18,37 +75,74 @@ html{
 }
 
 .tasks__doneButton{
-    background: yellow;
+    background: rgb(39, 245, 7);
+    width: var(--icon-width);
+    height: var(--icon-height);
+    margin-right: 10px;
     transition: background 5s ease;
+    border: 1px rgb(229, 226, 226)
 }
 
 .tasks__doneButton--done{
-    background: rgb(41, 187, 0);
-}
-
-.tasks__listItem--important{
-    display: block;
-    height: 25px;
-    width: 25px;
-    background-image: url(/graphics/wykrzyknik-podwojny.png);
+    background: rgb(223, 250, 216);
+    background-image: url(/graphics/done-icon.png);
     background-position: center;
-    background-size: cover;
+    background-size: initial;
+    background-repeat: no-repeat;
+    border: none;
 }
 
-.tasks__listItem--averange{
+.tasks__taskContent{
     display: block;
-    height: 25px;
-    width: 25px;
-    background-image: url(/graphics/wykrzyknik.png);
+    flex-grow: 1;
+}
+.tasks__itemButtons{
+    display: flex;
+}
+
+.tasks__taskPriority{
+    margin-right: 5px;
+
+}
+.tasks__taskPriority--important{
+    display: block;
+    height: var(--icon-width);
+    width: var(--icon-height);
+    background-image: url(/graphics/priority-1-icon.png);
     background-position: center;
-    background-size: cover;
+    background-size: initial;
+    background-repeat: no-repeat;
 }
 
-.tasks__listItem--nopriority{
+.tasks__taskPriority--averange{
     display: block;
-    height: 25px;
-    width: 25px;
+    height: var(--icon-width);
+    width: var(--icon-height);
+    background-image: url(/graphics/priority-2-icon.png);
+    background-position: center;
+    background-size: initial;
+    background-repeat: no-repeat;
+}
+
+.tasks__taskPriority--nopriority{
+    display: block;
+    height: var(--icon-width);
+    width: var(--icon-height);
     background: #fff;
     background-position: center;
-    background-size: cover;
+    background-size: initial;
+    background-repeat: no-repeat;
+}
+
+.tasks__removeButton{
+    width: var(--icon-width);
+    height: var(--icon-height);
+    border: 1px rgb(229, 226, 226);
+    background: rgba(247, 77, 29, 0.918);
+    background-image: url(/graphics/trash-icon.png);
+    background-position: center;
+    background-size: initial;
+    background-repeat: no-repeat;
+    
+
 }

@@ -11,23 +11,11 @@ const render = () =>{
 
     for (const task of tasksList) {
         listHTML +=`<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""}">
-        <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}">Zrobione</button>
+        <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
         <span class="tasks__taskContent">${task.taskName}</span>
-        <span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__listItem--nopriority" : task.taskPriority === 1 ? "tasks__listItem--averange" : "tasks__listItem--important" }"></span>
-        <button class="js-tasks__removeButton">Usuń</button></li>`;   
-    }
-
-{/* <span class="tasks__taskPriority tasks__listItem--averange">${task.taskPriority}</span> */}
-
-    // ${switch (${task.taskPriority}){
-    //     case "0":
-    //         return "tasks__listItem--nopriority";
-    //     case "1":
-    //         return "tasks__listItem--averange";
-    //     case "2":
-    //         return "tasks__listItem--important";
-    // }}
-
+        <div class="tasks__itemButtons"><span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__taskPriority--nopriority" : task.taskPriority === 1 ? "tasks__taskPriority--averange" : "tasks__taskPriority--important" }"></span>
+        <button class="js-tasks__removeButton tasks__removeButton"></button></div></li>`;   
+    };
 
     document.querySelector(".js-tasksList").innerHTML = listHTML;
 
