@@ -10,6 +10,11 @@ html{
 :root{
     --icon-width: 35px;
     --icon-height: 35px;
+    --form-font-size: min(max(2.89vw, 14px),17px);
+}
+
+body{
+    background: rgb(230, 230, 228);
 }
 
 .taskList{
@@ -17,14 +22,6 @@ html{
     width: min(1000px, calc(100% - 20px));
     margin-inline: auto;
     padding: 15px;
-}
-
-.taskList__header{
-    /* text-align: center; */
-    /* background: #fff; */
-    /* padding: 10px 0; */
-    /* border: 1px solid rgb(180, 178, 178); */
-
 }
 
 .taskListForm__header{
@@ -40,12 +37,55 @@ html{
     padding: 15px;
     border: 1px solid rgb(180, 178, 178);
     margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media screen and (max-width: 499px){
+    .taskListForm__form{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.taskListForm__addField{
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: var(--form-font-size);
+}
+
+@media screen and (max-width: 499px){
+    .taskListForm__addField{
+        flex-basis: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+.taskListForm__priority{
+    margin-right: 10px;
+    font-size: var(--form-font-size);
+}
+
+.taskListForm__addButton{
+    padding: 8px 10px;
+    border: 1px solid  rgb(180, 178, 178);
+    border-radius: 8px;
+    background: #2a7221;
+    color: #fff;
+    font-size: var(--form-font-size);
+    transition: color .85s, background .85s;
+}
+
+.taskListForm__addButton:hover{
+    color:#2a7221;
+    background: #fff;
 }
 
 .tasks{
     background: #fff;
     border: 1px solid rgb(180, 178, 178);
-
 }
 
 .tasks__header{
@@ -95,6 +135,7 @@ html{
 .tasks__taskContent{
     display: block;
     flex-grow: 1;
+    font-size: min(max(3.3vw, 14px), 16px);
 }
 .tasks__itemButtons{
     display: flex;

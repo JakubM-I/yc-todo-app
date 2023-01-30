@@ -1,10 +1,4 @@
-const tasksList = [
-    {
-        taskName: "Zadanie1",
-        taskPriority: 0,
-        taskDone: "",
-    },
-];
+const tasksList = [];
 
 const render = () =>{
     let listHTML = "";
@@ -50,11 +44,9 @@ const listSort = () => {
     tasksList.sort(itemSorting)
     render();
 }
-console.log(tasksList.sort(listSort));
 
 const taskAdd = (newTask, prioritySelect) => {
 
-    // const newTaskPriority = prioritySelect.value === "brak" ? "" : prioritySelect.value;
     const priorityLevel = prioritySelect.value;
 
     const newTaskPriority = () => {
@@ -92,25 +84,27 @@ const removeTask = (index) => {
     render();
 };
 
+const formSubmit = (e) => {
+    e.preventDefault();
+
+    const newTaskField = document.querySelector(".js-addNewTask");
+    const prioritySelect = document.querySelector(".js-newTaskPriority");
+    const newTask = newTaskField.value.trim();
+
+    if(newTask === ""){
+        return
+    };
+
+    taskAdd(newTask, prioritySelect);
+    listSort();
+    formFieldErase(newTaskField, prioritySelect);
+}
+
 const init = () => {
     render();
 
     const addForm = document.querySelector(".js-taskListForm");
-    const newTaskField = document.querySelector(".js-addNewTask");
-    const prioritySelect = document.querySelector(".js-newTaskPriority");
-
-    addForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const newTask = newTaskField.value.trim();
-        if(newTask === ""){
-            return
-        };
-
-        taskAdd(newTask, prioritySelect);
-        listSort();
-        formFieldErase(newTaskField, prioritySelect);
-    });
+    addForm.addEventListener("submit", formSubmit);
 
 };
 
