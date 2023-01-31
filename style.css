@@ -69,6 +69,7 @@ body{
     -webkit-appearance: none;
     -webkit-padding-start: 5px;
     -webkit-padding-end: 5px;
+    -moz-appearance: auto;
 }
 
 .taskListForm__addButton{
