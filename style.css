@@ -130,13 +130,16 @@ body{
     height: var(--icon-height);
     margin-right: 10px;
     flex-shrink: 0;
-    transition: background .85s ;
     border: 1px rgb(229, 226, 226)
+}
+
+.tasks__doneButton:hover{
+    opacity: 0.8;
 }
 
 .tasks__doneButton--done{
     background: rgb(223, 250, 216);
-    background-image: url(/graphics/done-icon.png);
+    background-image: url(graphics/done-icon.png);
     background-position: center;
     background-size: initial;
     background-repeat: no-repeat;
@@ -160,7 +163,7 @@ body{
     display: block;
     height: var(--icon-width);
     width: var(--icon-height);
-    background-image: url(/graphics/priority-1-icon.png);
+    background-image: url(graphics/priority-1-icon.png);
     background-position: center;
     background-size: initial;
     background-repeat: no-repeat;
@@ -170,7 +173,7 @@ body{
     display: block;
     height: var(--icon-width);
     width: var(--icon-height);
-    background-image: url(/graphics/priority-2-icon.png);
+    background-image: url(graphics/priority-2-icon.png);
     background-position: center;
     background-size: initial;
     background-repeat: no-repeat;
@@ -191,8 +194,12 @@ body{
     height: var(--icon-height);
     border: 1px rgb(229, 226, 226);
     background: rgba(247, 77, 29, 0.918);
-    background-image: url(/graphics/trash-icon.png);
+    background-image: url(graphics/trash-icon.png);
     background-position: center;
     background-size: initial;
     background-repeat: no-repeat;
+}
+
+.tasks__removeButton:hover{
+    opacity: 0.8;
 }
