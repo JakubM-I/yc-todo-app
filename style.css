@@ -75,13 +75,18 @@ body{
     background: #2a7221;
     color: #fff;
     font-size: var(--form-font-size);
-    transition: color .85s, background .85s;
+    transition: color .65s, background .65s, transform .45s;
 }
 
 .taskListForm__addButton:hover{
     color:#2a7221;
     background: #fff;
 }
+
+.taskListForm__addButton:active{
+    transform: scale(0.95);
+}
+
 
 .tasks{
     background: #fff;
@@ -119,7 +124,8 @@ body{
     width: var(--icon-width);
     height: var(--icon-height);
     margin-right: 10px;
-    transition: background 5s ease;
+    flex-shrink: 0;
+    transition: background .85s ;
     border: 1px rgb(229, 226, 226)
 }
 

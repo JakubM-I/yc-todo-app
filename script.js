@@ -51,6 +51,8 @@ const taskAdd = (newTask, prioritySelect) => {
 
     const newTaskPriority = () => {
         switch (priorityLevel) {
+            case "":
+                return 0;
             case "brak":
                 return 0;
             case "sredni":
@@ -71,7 +73,7 @@ const taskAdd = (newTask, prioritySelect) => {
 
 const formFieldErase = (newTaskField, prioritySelect) => {
     newTaskField.value = "";
-    prioritySelect.value = "brak";
+    prioritySelect.value = "";
 };
 
 const doneTask = (index) => {
@@ -98,6 +100,7 @@ const formSubmit = (e) => {
     taskAdd(newTask, prioritySelect);
     listSort();
     formFieldErase(newTaskField, prioritySelect);
+    newTaskField.focus();
 }
 
 const init = () => {
