@@ -66,6 +66,9 @@ body{
 .taskListForm__priority{
     margin-right: 10px;
     font-size: var(--form-font-size);
+    -webkit-appearance: none;
+    -webkit-padding-start: 5px;
+    -webkit-padding-end: 5px;
 }
 
 .taskListForm__addButton{
