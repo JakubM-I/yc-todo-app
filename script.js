@@ -23,6 +23,7 @@ const taskListUpdate = () => {
         button.addEventListener("click", () =>{
             button.classList.toggle("tasks__doneButton--done");
             doneTask(index);
+            listSort();
         });
     });
 
@@ -33,11 +34,10 @@ const taskListUpdate = () => {
             removeTask(index);
         });
     });
-
 };
 
 const itemSorting = (a, b) => {
-    return b.taskPriority - a.taskPriority 
+    return a.taskDone - b.taskDone || b.taskPriority - a.taskPriority;
 };
 
 const listSort = () => {
@@ -66,6 +66,7 @@ const taskAdd = (newTask, prioritySelect) => {
         {
             taskName: newTask,
             taskPriority: newTaskPriority(),
+            taskDone: false,
         }
     );
     render();
@@ -109,6 +110,7 @@ const init = () => {
     const addForm = document.querySelector(".js-taskListForm");
     addForm.addEventListener("submit", formSubmit);
 
+    // doneTaskSorting();
 };
 
 init();

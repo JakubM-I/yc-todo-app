@@ -8,8 +8,8 @@ html{
 }
 
 :root{
-    --icon-width: 35px;
-    --icon-height: 35px;
+    --icon-width: min(max(6.412vw, 30px), 35px);
+    --icon-height: min(max(6.412vw, 30px), 35px);
     --form-font-size: min(max(2.89vw, 14px),17px);
 }
 
@@ -87,7 +87,6 @@ body{
     transform: scale(0.95);
 }
 
-
 .tasks{
     background: #fff;
     border: 1px solid rgb(180, 178, 178);
@@ -102,6 +101,12 @@ body{
     border-top: 1px solid rgb(180, 178, 178);
     padding: 20px 15px 0px;
     margin-top: 0;
+}
+
+@media screen and (max-width: 499px){
+    .tasks__list{
+        padding: 20px 5px 0px;
+    }
 }
 
 .tasks__listItem{
@@ -190,6 +195,4 @@ body{
     background-position: center;
     background-size: initial;
     background-repeat: no-repeat;
-    
-
 }
