@@ -8,8 +8,10 @@
             listHTML += `<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""}">
         <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
         <span class="tasks__taskContent">${task.taskName}</span>
-        <div class="tasks__itemButtons"><span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__taskPriority--nopriority" : task.taskPriority === 1 ? "tasks__taskPriority--averange" : "tasks__taskPriority--important"}"></span>
-        <button class="js-tasks__removeButton tasks__removeButton"></button></div></li>`;
+        <div class="tasks__itemButtons">
+        <span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__taskPriority--nopriority" : task.taskPriority === 1 ? "tasks__taskPriority--averange" : "tasks__taskPriority--important"}"></span>
+        <button class="js-tasks__removeButton tasks__removeButton"></button>
+        </div></li><hr class="tasks__taskDivider">`;
         };
 
         document.querySelector(".js-tasksList").innerHTML = listHTML;
@@ -25,6 +27,7 @@
                 button.classList.toggle("tasks__doneButton--done");
                 doneTask(index);
                 listSort();
+                todoTaskCounter();
             });
         });
 
@@ -33,6 +36,8 @@
         removeButton.forEach((button, index) => {
             button.addEventListener("click", () => {
                 removeTask(index);
+                allTaskCounter();
+                todoTaskCounter();
             });
         });
     };
@@ -44,8 +49,17 @@
     const listSort = () => {
         tasksList.sort(itemSorting)
         render();
-    }
+    };
 
+    const allTaskCounter = () => {
+        document.querySelector(".js-allTaskCounter").innerHTML = tasksList.length;
+    };
+
+    const todoTaskCounter = () => {
+        todoNumber = tasksList.filter(task => task.taskDone === false).length;
+        document.querySelector(".js-todoTaskCounter").innerHTML = todoNumber ;
+    };
+    
     const taskAdd = (newTask, prioritySelect) => {
 
         const priorityLevel = prioritySelect.value;
@@ -102,11 +116,15 @@
         taskAdd(newTask, prioritySelect);
         listSort();
         formFieldErase(newTaskField, prioritySelect);
+        allTaskCounter();
+        todoTaskCounter();
         newTaskField.focus();
     }
 
     const init = () => {
         render();
+        allTaskCounter();
+        todoTaskCounter();
 
         const addForm = document.querySelector(".js-taskListForm");
         addForm.addEventListener("submit", formSubmit);

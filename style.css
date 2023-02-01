@@ -98,7 +98,22 @@ body{
 
 .tasks__header{
     margin: 0;
-    padding: 15px;
+    margin-bottom: 10px;
+    padding: 15px 15px 0 15px;
+}
+
+.tasks__taskCounter{
+    padding: 0 15px 15px 15px;
+    display: flex;
+}
+
+.tasks__taskCounterItem{
+    margin: 0;
+    margin-right: 10px;
+}
+
+.tasks__taskCounterNumber{
+    font-weight: 600;
 }
 
 .tasks__list{
@@ -207,4 +222,8 @@ body{
 
 .tasks__removeButton:hover{
     opacity: 0.8;
+}
+
+.tasks__taskDivider{
+    border-top: 1px solid rgb(180, 178, 178);;
 }
