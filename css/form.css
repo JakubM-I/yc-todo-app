@@ -1,0 +1,66 @@
+.taskListForm__header{
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 0;
+    border: 1px solid rgb(180, 178, 178);
+    border-bottom: none;
+}
+
+.taskListForm__form{
+    background: #fff;
+    padding: 15px;
+    border: 1px solid rgb(180, 178, 178);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media screen and (max-width: 499px){
+    .taskListForm__form{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.taskListForm__addField{
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: var(--form-font-size);
+}
+
+@media screen and (max-width: 499px){
+    .taskListForm__addField{
+        flex-basis: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+.taskListForm__priority{
+    margin-right: 10px;
+    font-size: var(--form-font-size);
+    -webkit-appearance: none;
+    -webkit-padding-start: 5px;
+    -webkit-padding-end: 5px;
+    -moz-appearance: auto;
+}
+
+.taskListForm__addButton{
+    padding: 8px 10px;
+    border: 1px solid  rgb(180, 178, 178);
+    border-radius: 8px;
+    background: #2a7221;
+    color: #fff;
+    font-size: var(--form-font-size);
+    transition: color .65s, background .65s, transform .45s;
+}
+
+.taskListForm__addButton:hover{
+    color:#2a7221;
+    background: #fff;
+}
+
+.taskListForm__addButton:active{
+    transform: scale(0.95);
+}

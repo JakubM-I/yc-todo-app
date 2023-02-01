@@ -11,7 +11,8 @@
         <div class="tasks__itemButtons">
         <span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__taskPriority--nopriority" : task.taskPriority === 1 ? "tasks__taskPriority--averange" : "tasks__taskPriority--important"}"></span>
         <button class="js-tasks__removeButton tasks__removeButton"></button>
-        </div></li><hr class="tasks__taskDivider">`;
+        </div></li>
+        <hr class="tasks__taskDivider">`;
         };
 
         document.querySelector(".js-tasksList").innerHTML = listHTML;
