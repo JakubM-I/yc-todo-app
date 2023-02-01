@@ -44,6 +44,7 @@
     -webkit-padding-start: 5px;
     -webkit-padding-end: 5px;
     -moz-appearance: auto;
+    cursor: pointer;
 }
 
 .taskListForm__addButton{
@@ -53,6 +54,7 @@
     background: #2a7221;
     color: #fff;
     font-size: var(--form-font-size);
+    cursor: pointer;
     transition: color .65s, background .65s, transform .45s;
 }
 

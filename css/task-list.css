@@ -56,7 +56,8 @@
     height: var(--icon-height);
     margin-right: 10px;
     flex-shrink: 0;
-    border: 1px rgb(229, 226, 226)
+    border: 1px rgb(229, 226, 226);
+    cursor: pointer;
 }
 
 .tasks__doneButton:hover{
@@ -125,6 +126,7 @@
     background-position: center;
     background-size: initial;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .tasks__removeButton:hover{
