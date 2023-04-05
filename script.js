@@ -9,7 +9,7 @@
         <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
         <span class="tasks__taskContent">${task.taskName}</span>
         <div class="tasks__itemButtons">
-        <span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__taskPriority--nopriority" : task.taskPriority === 1 ? "tasks__taskPriority--averange" : "tasks__taskPriority--important"}"></span>
+        <span class="tasks__taskPriority ${taskPriorityToggle(task)}"></span>
         <button class="js-tasks__removeButton tasks__removeButton"></button>
         </div></li>`;
         };
@@ -18,6 +18,19 @@
 
         taskAddEvents();
     };
+
+    const taskPriorityToggle = (task) => {
+        if(task.taskPriority === 0){
+            return "tasks__taskPriority--nopriority";
+        };
+        
+        if(task.taskPriority === 1){
+            return "tasks__taskPriority--averange";
+        };
+    
+        return "tasks__taskPriority--important";
+    };
+
 
     const taskStatusToggle = (button, index) => {
         button.classList.toggle("tasks__doneButton--done");
