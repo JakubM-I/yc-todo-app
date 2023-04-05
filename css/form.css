@@ -13,6 +13,7 @@
     margin-bottom: 15px;
     display: flex;
     justify-content: flex-start;
+    gap: 10px;
 }
 
 @media screen and (max-width: 499px){
@@ -24,7 +25,6 @@
 
 .taskListForm__addField{
     flex-grow: 1;
-    margin-right: 10px;
     padding: 5px;
     font-size: var(--form-font-size);
 }
@@ -38,7 +38,6 @@
 }
 
 .taskListForm__priority{
-    margin-right: 10px;
     font-size: var(--form-font-size);
     -webkit-appearance: none;
     -webkit-padding-start: 5px;

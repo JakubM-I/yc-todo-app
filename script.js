@@ -3,7 +3,7 @@
 
     const render = () => {
         let listHTML = "";
-
+        
         for (const task of tasksList) {
             listHTML += `<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""}">
         <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
@@ -11,24 +11,33 @@
         <div class="tasks__itemButtons">
         <span class="tasks__taskPriority ${task.taskPriority === 0 ? "tasks__taskPriority--nopriority" : task.taskPriority === 1 ? "tasks__taskPriority--averange" : "tasks__taskPriority--important"}"></span>
         <button class="js-tasks__removeButton tasks__removeButton"></button>
-        </div></li>
-        <hr class="tasks__taskDivider">`;
+        </div></li>`;
         };
 
         document.querySelector(".js-tasksList").innerHTML = listHTML;
 
-        taskListUpdate();
+        taskAddEvents();
     };
 
-    const taskListUpdate = () => {
+    const taskStatusToggle = (button, index) => {
+        button.classList.toggle("tasks__doneButton--done");
+        toggleTaskDone(index);
+        listSort();
+        todoTaskCounter();
+    };
+
+    const taskRemoved = (index) => {
+        removeTask(index);
+        allTaskCounter();
+        todoTaskCounter();
+    };
+
+    const taskAddEvents = () => {
         const doneButton = document.querySelectorAll(".js-tasks__doneButton");
 
         doneButton.forEach((button, index) => {
             button.addEventListener("click", () => {
-                button.classList.toggle("tasks__doneButton--done");
-                doneTask(index);
-                listSort();
-                todoTaskCounter();
+                taskStatusToggle(button, index);
             });
         });
 
@@ -36,9 +45,7 @@
 
         removeButton.forEach((button, index) => {
             button.addEventListener("click", () => {
-                removeTask(index);
-                allTaskCounter();
-                todoTaskCounter();
+                taskRemoved(index);
             });
         });
     };
@@ -48,7 +55,7 @@
     };
 
     const listSort = () => {
-        tasksList.sort(itemSorting)
+        tasksList.sort(itemSorting);
         render();
     };
 
@@ -57,12 +64,11 @@
     };
 
     const todoTaskCounter = () => {
-        todoNumber = tasksList.filter(task => task.taskDone === false).length;
+        let todoNumber = tasksList.filter(task => task.taskDone === false).length;
         document.querySelector(".js-todoTaskCounter").innerHTML = todoNumber ;
     };
     
     const taskAdd = (newTask, prioritySelect) => {
-
         const priorityLevel = prioritySelect.value;
 
         const newTaskPriority = () => {
@@ -93,7 +99,7 @@
         prioritySelect.value = "";
     };
 
-    const doneTask = (index) => {
+    const toggleTaskDone = (index) => {
         tasksList[index].taskDone = !tasksList[index].taskDone;
         render();
     };
