@@ -1,4 +1,4 @@
-
+{
     let tasksList = [];
 
     const render = () => {
@@ -161,3 +161,4 @@
     };
 
     init();
+}
