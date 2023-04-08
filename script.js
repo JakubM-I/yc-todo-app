@@ -1,5 +1,5 @@
-{
-    const tasksList = [];
+
+    let tasksList = [];
 
     const render = () => {
         let listHTML = "";
@@ -96,14 +96,16 @@
                     return 2;
             }
         }
-
-        tasksList.push(
+        
+        tasksList = [
+            ...tasksList,
             {
                 taskName: newTask,
                 taskPriority: newTaskPriority(),
                 taskDone: false,
-            }
-        );
+            },
+        ];
+
         render();
     };
 
@@ -113,12 +115,19 @@
     };
 
     const toggleTaskDone = (index) => {
-        tasksList[index].taskDone = !tasksList[index].taskDone;
+        tasksList = [
+            ...tasksList.slice(0, index),
+            {...tasksList[index], taskDone: !tasksList[index]["taskDone"]},
+            ...tasksList.slice(index + 1),
+        ];
         render();
     };
 
     const removeTask = (index) => {
-        tasksList.splice(index, 1);
+        tasksList = [
+            ...tasksList.slice(0, index),
+            ...tasksList.slice(index + 1),
+        ];
         render();
     };
 
@@ -152,4 +161,3 @@
     };
 
     init();
-}
