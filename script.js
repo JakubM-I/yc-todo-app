@@ -115,10 +115,11 @@
     };
 
     const toggleTaskDone = (index) => {
+
+        const chnagedItemIndex = index;
+
         tasksList = [
-            ...tasksList.slice(0, index),
-            {...tasksList[index], taskDone: !tasksList[index]["taskDone"]},
-            ...tasksList.slice(index + 1),
+            ...tasksList.map((task, index) => chnagedItemIndex === index ? {...task, taskDone: !task.taskDone } : task),
         ];
         render();
     };
@@ -161,4 +162,4 @@
     };
 
     init();
-}
+};
