@@ -50,6 +50,10 @@
     color: lightgray;
 }
 
+.tasks__listItem---hide{
+    display: none;
+}
+
 .tasks__doneButton{
     background: rgb(39, 245, 7);
     width: var(--icon-width);
