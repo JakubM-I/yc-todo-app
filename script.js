@@ -3,13 +3,13 @@
 
     const tasksListRender = () => {
         let listHTML = "";
-        
+
         for (const task of tasksList) {
-            listHTML += `<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""} ${task.taskVisibilty ? "" : "tasks__listItem---hide" }">
+            listHTML += `<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""} ${task.taskVisibility ? "" : "tasks__listItem---hide"}">
         <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
         <span class="tasks__taskContent">${task.taskName}</span>
         <div class="tasks__itemButtons">
-        <span class="tasks__taskPriority ${taskPriorityToggle(task)}"></span>
+        <span class="tasks__taskPriority ${toggleTaskPriority(task)}"></span>
         <button class="js-tasks__removeButton tasks__removeButton"></button>
         </div></li>`;
         };
@@ -20,8 +20,8 @@
     const taskButtonRender = () => {
         let tasksButon = document.querySelector(".js-tasksButtons");
 
-        if(tasksList.length === 0){
-            tasksButon.innerHTML = ""; 
+        if (tasksList.length === 0) {
+            tasksButon.innerHTML = "";
             return
         };
 
@@ -32,69 +32,66 @@
 
     const render = () => {
         tasksListRender();
-        taskButtonRender();
-
         taskAddEvents();
-        buttonsAddEvents(); 
+
+        taskButtonRender();
+        buttonsAddEvents();
     };
 
     const doneAllTasks = () => {
         tasksList = [
-            ...tasksList.map((task) => task.taskDone === true ? task : {...task, taskDone: true})
+            ...tasksList.map((task) => task.taskDone === true ? task : { ...task, taskDone: true })
         ];
+
+        todoTaskCounter();
         render();
     };
 
     const toggleActivityButton = () => {
-        if(tasksList.every(({taskDone}) => taskDone === true )){
+        if (tasksList.every(({ taskDone }) => taskDone === true)) {
             return "disabled"
         };
     };
 
-    const hidingDoneTask = () => {
+    const toggleTaskVisibility = () => {
         tasksList = [
-            ...tasksList.map((task) => 
-                task.taskDone  === true ? {...task, taskVisibilty: !task.taskVisibilty} : task ),
+            ...tasksList.map((task) =>
+                task.taskDone === true ? { ...task, taskVisibility: !task.taskVisibility } : task),
         ];
 
         render();
     };
 
     const toggleButtonName = () => {
-        if(tasksList.some(({taskVisibilty}) => taskVisibilty === false)){
+        if (tasksList.some(({ taskVisibility }) => taskVisibility === false)) {
             return "Pokaż";
-       };
-            return "Ukryj";
+        };
+        return "Ukryj";
     };
 
     const buttonsAddEvents = () => {
         const allTaskDoneButton = document.querySelector(".js-doneAllTasksButton");
 
-        if(!allTaskDoneButton){
+        if (!allTaskDoneButton) {
             return
-        }
+        };
 
-        allTaskDoneButton.addEventListener("click", () => {
-            doneAllTasks();
-            todoTaskCounter();
-        });
+        allTaskDoneButton.addEventListener("click", doneAllTasks);
 
         const hideAllTasksButton = document.querySelector(".js-hideTasksButton");
 
-        hideAllTasksButton.addEventListener("click", () => {
-            hidingDoneTask();
-        });
+        hideAllTasksButton.addEventListener("click", toggleTaskVisibility);
     };
 
-    const taskPriorityToggle = (task) => {
-        if(task.taskPriority === 0){
+    const toggleTaskPriority = (task) => {
+        if (task.taskPriority === 0) {
             return "tasks__taskPriority--nopriority";
         };
-        
-        if(task.taskPriority === 1){
+
+        if (task.taskPriority === 1) {
             return "tasks__taskPriority--averange";
         };
-    
+
         return "tasks__taskPriority--important";
     };
 
@@ -145,9 +142,9 @@
 
     const todoTaskCounter = () => {
         let todoNumber = tasksList.filter(task => task.taskDone === false).length;
-        document.querySelector(".js-todoTaskCounter").innerHTML = todoNumber ;
+        document.querySelector(".js-todoTaskCounter").innerHTML = todoNumber;
     };
-    
+
     const taskAdd = (newTask, prioritySelect) => {
         const priorityLevel = prioritySelect.value;
 
@@ -163,14 +160,14 @@
                     return 2;
             }
         }
-        
+
         tasksList = [
             ...tasksList,
             {
                 taskName: newTask,
                 taskPriority: newTaskPriority(),
                 taskDone: false,
-                taskVisibilty: true,
+                taskVisibility: true,
             },
         ];
 
@@ -186,7 +183,7 @@
         const doneItemIndex = index;
 
         tasksList = [
-            ...tasksList.map((task, index) => doneItemIndex === index ? {...task, taskDone: !task.taskDone } : task),
+            ...tasksList.map((task, index) => doneItemIndex === index ? { ...task, taskDone: !task.taskDone } : task),
         ];
         render();
     };
