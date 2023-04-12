@@ -9,8 +9,15 @@
     padding: 15px 15px 0 15px;
 }
 
-.tasks__taskCounter{
+.tasks__menu{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: auto;
+    align-items: center;
     padding: 0 15px 15px 15px;
+}
+
+.tasks__taskCounter{
     display: flex;
 }
 
@@ -21,6 +28,10 @@
 
 .tasks__taskCounterNumber{
     font-weight: 600;
+}
+
+.tasks__buttons{
+    justify-self: end;
 }
 
 .tasks__list{
