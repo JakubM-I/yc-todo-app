@@ -26,8 +26,8 @@
         };
 
         tasksButon.innerHTML = `
-            <button class="tasks__hideTasks js-hideTasksButton">${toggleButtonName()} zakończone</button>
-            <button class="tasks__doneAllTask js-doneAllTasksButton" ${toggleActivityButton()}>Zakończ wszystkie</button>`
+            <button class="tasks__buttonItem js-hideTasksButton">${toggleButtonName()} zakończone</button>
+            <button class="tasks__buttonItem js-doneAllTasksButton" ${toggleActivityButton()}>Zakończ wszystkie</button>`
     };
 
     const render = () => {
