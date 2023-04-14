@@ -18,16 +18,24 @@
     };
 
     const taskButtonRender = () => {
-        let tasksButon = document.querySelector(".js-tasksButtons");
+        let tasksMenu = document.querySelector(".js-tasksMenu");
 
         if (tasksList.length === 0) {
-            tasksButon.innerHTML = "";
+            tasksMenu.innerHTML = "";
             return
         };
 
-        tasksButon.innerHTML = `
-            <button class="tasks__buttonItem js-hideTasksButton">${toggleButtonName()} zakończone</button>
-            <button class="tasks__buttonItem js-doneAllTasksButton" ${toggleActivityButton()}>Zakończ wszystkie</button>`
+        tasksMenu.innerHTML = `
+        <div class="tasks__menu">
+        <div class="tasks__taskCounter">
+            <p class="tasks__taskCounterItem">Zadań: <span class="tasks__taskCounterNumber">${tasksList.length}</span></p>
+            <p class="tasks__taskCounterItem">Do zrobienia: <span class="tasks__taskCounterNumber">${tasksList.filter(task => task.taskDone === false).length}</span></p>
+        </div>
+        <div class="tasks__buttons">
+           <button class="tasks__buttonItem js-hideTasksButton">${toggleButtonName()} zakończone</button>
+           <button class="tasks__buttonItem js-doneAllTasksButton" ${toggleActivityButton()}>Zakończ wszystkie</button>
+        </div>
+        </div>`
     };
 
     const render = () => {
@@ -43,7 +51,6 @@
             ...tasksList.map((task) => task.taskDone === true ? task : { ...task, taskDone: true })
         ];
 
-        todoTaskCounter();
         render();
     };
 
@@ -96,17 +103,10 @@
     };
 
 
-    const taskStatusToggle = (button, index) => {
+    const toggleTaskStatus = (button, index) => {
         button.classList.toggle("tasks__doneButton--done");
         toggleTaskDone(index);
         listSort();
-        todoTaskCounter();
-    };
-
-    const taskRemoved = (index) => {
-        removeTask(index);
-        allTaskCounter();
-        todoTaskCounter();
     };
 
     const taskAddEvents = () => {
@@ -114,7 +114,7 @@
 
         doneButton.forEach((button, index) => {
             button.addEventListener("click", () => {
-                taskStatusToggle(button, index);
+                toggleTaskStatus(button, index);
             });
         });
 
@@ -122,7 +122,7 @@
 
         removeButton.forEach((button, index) => {
             button.addEventListener("click", () => {
-                taskRemoved(index);
+                removeTask(index);
             });
         });
     };
@@ -134,15 +134,6 @@
     const listSort = () => {
         tasksList.sort(itemSorting);
         render();
-    };
-
-    const allTaskCounter = () => {
-        document.querySelector(".js-allTaskCounter").innerHTML = tasksList.length;
-    };
-
-    const todoTaskCounter = () => {
-        let todoNumber = tasksList.filter(task => task.taskDone === false).length;
-        document.querySelector(".js-todoTaskCounter").innerHTML = todoNumber;
     };
 
     const taskAdd = (newTask, prioritySelect) => {
@@ -185,6 +176,7 @@
         tasksList = [
             ...tasksList.map((task, index) => doneItemIndex === index ? { ...task, taskDone: !task.taskDone } : task),
         ];
+
         render();
     };
 
@@ -193,6 +185,7 @@
             ...tasksList.slice(0, index),
             ...tasksList.slice(index + 1),
         ];
+
         render();
     };
 
@@ -210,15 +203,11 @@
         taskAdd(newTask, prioritySelect);
         listSort();
         formFieldErase(newTaskField, prioritySelect);
-        allTaskCounter();
-        todoTaskCounter();
         newTaskField.focus();
     }
 
     const init = () => {
         render();
-        allTaskCounter();
-        todoTaskCounter();
 
         const addForm = document.querySelector(".js-taskListForm");
         addForm.addEventListener("submit", formSubmit);
