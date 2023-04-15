@@ -60,6 +60,7 @@
 .taskListForm__addButton:hover{
     color:#2a7221;
     background: #fff;
+    transform: scale(1.05);
 }
 
 .taskListForm__addButton:active{

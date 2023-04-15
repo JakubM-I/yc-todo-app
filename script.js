@@ -5,13 +5,15 @@
         let listHTML = "";
 
         for (const task of tasksList) {
-            listHTML += `<li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""} ${task.taskVisibility ? "" : "tasks__listItem---hide"}">
-        <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
-        <span class="tasks__taskContent">${task.taskName}</span>
-        <div class="tasks__itemButtons">
-        <span class="tasks__taskPriority ${toggleTaskPriority(task)}"></span>
-        <button class="js-tasks__removeButton tasks__removeButton"></button>
-        </div></li>`;
+            listHTML += `
+            <li class="tasks__listItem ${task.taskDone ? "tasks__listItem--done" : ""} ${task.taskVisibility ? "" : "tasks__listItem---hide"}">
+                <button class="js-tasks__doneButton tasks__doneButton ${task.taskDone ? "tasks__doneButton--done" : ""}"></button>
+                <span class="tasks__taskContent">${task.taskName}</span>
+                <div class="tasks__itemButtons">
+                <span class="tasks__taskPriority ${toggleTaskPriority(task)}"></span>
+                <button class="js-tasks__removeButton tasks__removeButton"></button>
+                </div>
+            </li>`;
         };
 
         document.querySelector(".js-tasksList").innerHTML = listHTML;
@@ -28,12 +30,18 @@
         tasksMenu.innerHTML = `
         <div class="tasks__menu">
         <div class="tasks__taskCounter">
-            <p class="tasks__taskCounterItem">Zadań: <span class="tasks__taskCounterNumber">${tasksList.length}</span></p>
-            <p class="tasks__taskCounterItem">Do zrobienia: <span class="tasks__taskCounterNumber">${tasksList.filter(task => task.taskDone === false).length}</span></p>
+            <p class="tasks__taskCounterItem">Zadań: 
+                <span class="tasks__taskCounterNumber">${tasksList.length}</span></p>
+            <p class="tasks__taskCounterItem">Do zrobienia: 
+                <span class="tasks__taskCounterNumber">${tasksList.filter(task => task.taskDone === false).length}</span></p>
         </div>
         <div class="tasks__buttons">
-           <button class="tasks__buttonItem js-hideTasksButton">${toggleButtonName()} zakończone</button>
-           <button class="tasks__buttonItem js-doneAllTasksButton" ${toggleActivityButton()}>Zakończ wszystkie</button>
+            <button class="tasks__buttonItem js-hideTasksButton">
+                ${tasksList.some(({ taskVisibility }) => taskVisibility === false) ? "Pokaż" : "Ukryj" } zakończone
+            </button>
+            <button class="tasks__buttonItem js-doneAllTasksButton" 
+                ${tasksList.every(({ taskDone }) => taskDone === true) ? "disabled" : "" }>Zakończ wszystkie
+            </button>
         </div>
         </div>`
     };
@@ -54,12 +62,6 @@
         render();
     };
 
-    const toggleActivityButton = () => {
-        if (tasksList.every(({ taskDone }) => taskDone === true)) {
-            return "disabled"
-        };
-    };
-
     const toggleTaskVisibility = () => {
         tasksList = [
             ...tasksList.map((task) =>
@@ -67,13 +69,6 @@
         ];
 
         render();
-    };
-
-    const toggleButtonName = () => {
-        if (tasksList.some(({ taskVisibility }) => taskVisibility === false)) {
-            return "Pokaż";
-        };
-        return "Ukryj";
     };
 
     const buttonsAddEvents = () => {
@@ -101,7 +96,6 @@
 
         return "tasks__taskPriority--important";
     };
-
 
     const toggleTaskStatus = (button, index) => {
         button.classList.toggle("tasks__doneButton--done");
@@ -149,8 +143,8 @@
                     return 1;
                 case "wysoki":
                     return 2;
-            }
-        }
+            };
+        };
 
         tasksList = [
             ...tasksList,
@@ -204,7 +198,7 @@
         listSort();
         formFieldErase(newTaskField, prioritySelect);
         newTaskField.focus();
-    }
+    };
 
     const init = () => {
         render();
