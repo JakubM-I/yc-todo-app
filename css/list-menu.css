@@ -1,0 +1,54 @@
+.tasks__menu{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    align-items: center;
+    padding: 0 15px 15px 15px;
+    font-size: var(--form-font-size);
+}
+
+@media screen and (max-width: 680px){
+    .tasks__menu{
+        justify-items: center; 
+        grid-template-rows: repeat(2, 25px);
+        padding: 0 0 15px 0;
+    }
+}
+
+.tasks__taskCounter{
+    display: flex;
+}
+
+.tasks__taskCounterItem{
+    margin: 0;
+    margin-right: 10px;
+}
+
+.tasks__taskCounterNumber{
+    font-weight: 600;
+}
+
+.tasks__buttons{
+    justify-self: end;
+}
+
+@media screen and (max-width: 680px){
+    .tasks__buttons{
+        justify-self: unset; 
+    }
+}
+
+.tasks__buttonItem{
+    background: none;
+    border: none;
+    color: hsl(225, 100%, 50%);
+    transition: color .4s ease-out;
+    cursor: pointer;
+}
+
+.tasks__buttonItem:hover{
+    color: hsl(225, 100%, 78%);
+}
+
+.tasks__buttonItem:disabled{
+    color:rgba(198, 197, 197, 0.915)
+}

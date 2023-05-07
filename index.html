@@ -15,15 +15,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/task-list.css">
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/section.css">
+    <link rel="stylesheet" href="css/list-menu.css">
     <script src="script.js" defer></script>
     <title>Lista zadań</title>
 </head>
 <body>
     <div class="taskList">
         <h1 class="taskList__header">Lista zadań</h1>
-        <section class="taskListForm">
-            <h3 class="taskListForm__header">Dodaj nowe zadanie</h3>
-            <form class="js-taskListForm taskListForm__form"action="#">
+        <section class="taskListSection">
+            <h3 class="taskListSection__header">Dodaj nowe zadanie</h3>
+            <form class="js-taskListForm taskListForm__form" action="#">
                 <input class="js-addNewTask taskListForm__addField" type="text" name="newTask" placeholder="Co jest do zrobienia?">
                 <select class="js-newTaskPriority taskListForm__priority" name="priority" id="">
                     <option value="" selected>Priorytet</option>
@@ -34,8 +36,8 @@
                 <button class="js-taskListForm__addButton taskListForm__addButton">Dodaj zadanie</button>
             </form>
         </section>
-        <section class="tasks">
-            <h3 class="tasks__header">Lista zadań</h3>
+        <section class="taskListSection">
+            <h3 class="taskListSection__header">Lista zadań</h3>
             <span class="js-tasksMenu"></span>
             <ul class="js-tasksList tasks__list"></ul>
         </section>

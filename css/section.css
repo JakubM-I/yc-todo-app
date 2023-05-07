@@ -1,0 +1,10 @@
+.taskListSection{
+    background: #fff;
+    border: 1px solid rgb(180, 178, 178);
+    margin-bottom: 15px;
+}
+
+.taskListSection__header{
+    padding: 15px;
+    margin: 0;
+}
